@@ -107,14 +107,8 @@ Provide Following data in body
 ```
 {
     "statusCode": 7000,
-    "message": "Login is successful",
-    "data": {
-        "user": {
-            "email": "test25@test.com",
-            "lastVisted": 1608982765637
-        },
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyNUB0ZXN0LmNvbSIsImlhdCI6MTYwODk4Mjc2NSwiZXhwIjoxNjA4OTg0NTY1fQ.53qzbE8k04ZrY_MQuPqzRChJnZVEa4pi9bayjWXLiIs"
-    }
+    "message": "Blog created successfully!",
+    "data": ""
 }
 ```
 
