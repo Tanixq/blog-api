@@ -7,6 +7,8 @@
 > - **GET request For View Public Blogs - https://blog-api-tanixq.herokuapp.com/api/blogs**
 > - **POST request For Creating New Blog (Login Token Required) End Point - https://blog-api-tanixq.herokuapp.com/api/users/create-blog**
 > - **GET request For View User Blogs (Login Token Required) End Point - https://blog-api-tanixq.herokuapp.com/api/users/blogs**
+> - **POST request For Verify Email End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/verify**
+> - **POST request For Resend Email End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/resend**
 
 # Usage
 
@@ -141,5 +143,52 @@ Make **Get** Request for Public Blogs on End Point - https://blog-api-tanixq.her
         }
     ],
     "data": ""
+}
+```
+
+## For Verify User Account
+Make **POST** Request for Verify User Account on End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/verify
+
+Provide Following data in body
+
+| Fields      | Description                 | TYPE      | Required  |
+| ------------- |:-------------:              | -----:    | -----: |
+| email         | Email of the user.          | String    | Yes |
+| otp           | otp received in email       |   String  | Yes |
+
+
+Example :- 
+```
+{  
+    "email": "er.tanixq@gmail.com",
+    "otp": "LNoKFJ"
+}
+```
+
+**Example of API Response:**
+
+On Successful Login
+```
+{
+    "statusCode": 7000,
+    "message": "Your account verificaiton is successful.",
+    "data": ""
+}
+```
+
+## For Resend otp
+Make **POST** Request for Resend otp on End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/resend
+
+Provide Following data in body
+
+| Fields      | Description                 | TYPE      | Required  |
+| ------------- |:-------------:              | -----:    | -----: |
+| email         | Email of the user.          | String    | Yes |
+
+
+Example :- 
+```
+{  
+    "email": "er.tanixq@gmail.com",
 }
 ```
