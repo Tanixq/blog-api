@@ -17,6 +17,12 @@
 - [Usage for Sign Up](#for-sign-up)
 - [Usage for Log In](#for-login)
 - [Usage for Creating Blog](#for-creating-blog)
+- [Usage For Viewing User Blog](#for-viewing-user-blog)
+- [Usage For Viewing Public Blog](#for-viewing-public-blog)
+- [Usage For Verify User Account](#for-verify-user-account)
+- [Usage For Resend otp](#for-resend-otp)
+
+
 
 ## For Sign Up
 Make **POST** Request for sign up on End Point - https://blog-api-tanixq.herokuapp.com/api/users/register
