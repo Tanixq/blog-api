@@ -108,6 +108,8 @@ const login = async (req, res) => {
 
 const createBlog = async (req, res) => {
   let response;
+  console.log(req.body);
+  console.log(req.file);
   let thumb_image = req.file.path;
   const { title, description } = req.body;
   const token = req.headers.authorization;

@@ -6,7 +6,7 @@ const {
   validateLogin,
   validateBlog,
   validateVerifyEmail,
-  validateReSendEmail
+  validateReSendEmail,
 } = require("../common/validators");
 var multer = require('multer');
 var upload = multer({dest:'uploads/'});
@@ -14,7 +14,7 @@ var upload = multer({dest:'uploads/'});
 
 router.post("/register", validateRegister, register);
 router.post("/login", validateLogin, login);
-router.post("/create-blog", upload.single('thumb_image'), createBlog);
+router.post("/create-blog", upload.single('thumb_image'), validateBlog, createBlog);
 router.get("/blogs", userBlogs);
 router.post('/email/verify', validateVerifyEmail, verifyEmail)
 router.post('/email/resend', validateReSendEmail, reSendEmail)
