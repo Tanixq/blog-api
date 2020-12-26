@@ -95,8 +95,6 @@ Provide Authentication Token in Header
 
 Generate Token by Login and Copy it.
 
-![alt generate_token](https://github.com/Tanixq/images/blob/main/generate_token.gif?raw=true)
-
 Provide Following data in body
 
 | Fields         | Description                | TYPE      | Required  |
@@ -126,8 +124,6 @@ Make **Get** Request for View User Blogs on End Point - https://blog-api-tanixq.
 Provide Authentication Token in Header
 
 Generate Token by Login and Copy it.
-
-![alt generate_token](https://github.com/Tanixq/images/blob/main/generate_token.gif?raw=true)
 
 ## For Viewing Public Blog
 Make **Get** Request for Public Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs
