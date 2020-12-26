@@ -51,6 +51,7 @@ const validateBlog = (req, res, next) => {
   
     res.send(error)
   }
+  next()
 }
 
 module.exports = {
