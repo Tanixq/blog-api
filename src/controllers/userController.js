@@ -108,7 +108,8 @@ const login = async (req, res) => {
 
 const createBlog = async (req, res) => {
   let response;
-  const { title, description, thumb_image } = req.body;
+  let thumb_image = req.file.path;
+  const { title, description } = req.body;
   const token = req.headers.authorization;
   try {
     if (token === undefined || token === null) {
@@ -119,7 +120,7 @@ const createBlog = async (req, res) => {
         const newBlog = new Blog({
           title,
           description,
-          thumb_image,
+          thumb_image: thumb_image,
           author: decoded.email,
           approved: false,
         });

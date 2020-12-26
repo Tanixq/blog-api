@@ -9,9 +9,4 @@ module.exports = {
     errorMessage: "Description field is missing",
     exists: true,
   },
-  thumb_image: {
-    in: ["body"],
-    errorMessage: "Thumb image is missing",
-    exists: true,
-  },
 };
