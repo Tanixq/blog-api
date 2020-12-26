@@ -99,9 +99,9 @@ Provide Following data in body
 
 | Fields         | Description                | TYPE      | Required  |
 | -------------  |:-------------:             | -----:    | -----: |
-| title          | Title of the blog.         |   String  | Yes |
-| description    | Description of the blog.   | String    | Yes |
-| thumb_image    | image url for blog thumb.  |   String  | Yes |
+| title          | Title of the blog.         |   String  | optional |
+| description    | Description of the blog.   | String    | optional |
+| thumb_image    | image url for blog thumb.  |   file    | optional |
 
 **Example of response:**
 ```
