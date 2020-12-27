@@ -21,6 +21,9 @@
 - [Usage For Viewing Public Blog](#for-viewing-public-blog)
 - [Usage For Verify User Account](#for-verify-user-account)
 - [Usage For Resend otp](#for-resend-otp)
+- [Usage For Admin Login](#for-admin-login)
+- [Usage For Review Blogs](#for-review-blogs)
+- [Usage For Approve Blog](#for-approve-blog)
 
 
 
@@ -221,7 +224,7 @@ Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpX"
 Generate Token by Admin Login and Copy it.
 
 ## For Approve Blog
-Make **POST** Request for Review Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/approve-blog
+Make **POST** Request for Approve Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/approve-blog
 
 Provide Admin Authentication Token in Header.
 
