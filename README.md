@@ -188,3 +188,55 @@ Example :-
     "email": "er.tanixq@gmail.com",
 }
 ```
+
+## For Admin Login
+Make **POST** Request for Admin Login on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/login
+
+Provide Following data in body
+
+| Fields        | Description                  | TYPE      | Required  |
+| ------------- |:-------------:               | -----:    | -----:    |
+| email         | Email of the admin.          | String    | Yes       |
+| password      | Password of the admin.       | String    | Yes       |
+
+
+Example :- 
+```
+{
+    "email": "test55@test.com",
+    "password": "123456"
+}
+```
+
+## For Review Blogs
+Make **GET** Request for Review Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/review-blogs
+
+Provide Admin Authentication Token in Header.
+
+Example :- 
+```
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpX"
+```
+
+Generate Token by Admin Login and Copy it.
+
+## For Approve Blog
+Make **POST** Request for Review Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/approve-blog
+
+Provide Admin Authentication Token in Header.
+
+Example :- 
+```
+Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpX"
+```
+
+Generate Token by Admin Login and Copy it.
+
+Provide blog_id in body.
+
+Example: - 
+```
+{
+    "blog_id" : "5fe77e9c6ef2010017df962a"
+}
+```
