@@ -10,6 +10,12 @@
 > - **POST request For Verify Email End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/verify**
 > - **POST request For Resend Email End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/resend**
 
+> - **POST** Request For Admin Login on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/login
+
+> - **GET** Request for Review Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/review-blogs
+
+> - **POST** Request for Approve Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/approve-blog
+
 # Usage
 
 ### Goto Section
