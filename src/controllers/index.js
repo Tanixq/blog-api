@@ -1,7 +1,7 @@
-const { register, login, userBlogs, createBlog } = require("./userController");
-
-const { blogs } = require("./blogController");
+const { register, login } = require("./userController");
+const { blogs, userBlogs, createBlog, approveBlog, reviewBlogs } = require("./blogController");
 const { verifyEmail, reSendEmail } = require("./emailController");
+const { adminLogin } = require("./adminController")
 
 module.exports = {
   register,
@@ -11,4 +11,7 @@ module.exports = {
   blogs,
   verifyEmail,
   reSendEmail,
+  adminLogin,
+  reviewBlogs,
+  approveBlog
 };

@@ -1,14 +1,11 @@
 const { isEmpty } = require("lodash");
 const {
-  VERIFY_STATUS,
   VERIFY_MESSAGE,
-  TYPE_LOG,
   SIGNUP,
 } = require("../common/helper/constant");
 const { STATUS_CODE } = require("../common/helper/response-code");
 const { Response, systemError } = require("../common/response-formatter");
 const { User } = require("../../db/models");
-const { findOne } = require("../../db/models/blog");
 const otpGenerator = require("otp-generator");
 const { sendEmail } =require("../common/helper/email");
 
