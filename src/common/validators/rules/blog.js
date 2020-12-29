@@ -9,4 +9,4 @@ module.exports = {
     errorMessage: "Description field is missing",
     exists: true,
   },
-};
+}

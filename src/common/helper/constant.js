@@ -57,4 +57,4 @@ module.exports = {
     MISSING: "Authorization token is missing",
     FAILED: "Authorization token Verification is failed",
   },
-};
+}

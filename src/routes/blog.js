@@ -1,7 +1,7 @@
-const express = require("express");
-const { blogs } = require("../controllers");
-const router = express.Router();
+const express = require("express")
+const { blogs } = require("../controllers")
+const router = express.Router()
 
-router.get("/", blogs);
+router.get("/", blogs)
 
-module.exports = router;
+module.exports = router

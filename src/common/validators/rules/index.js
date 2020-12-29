@@ -5,6 +5,7 @@ const verifyEmail = require("./verifyEmail")
 const reSendEmail = require("./resendEmail")
 const approveBlog = require("./approveBlog")
 const validateHeaderToken = require("./validateHeaderToken")
+const validateCreateBlog = require("./createBlog")
 
 module.exports = {
   register,
@@ -13,5 +14,6 @@ module.exports = {
   verifyEmail,
   reSendEmail,
   approveBlog,
-  validateHeaderToken
+  validateHeaderToken,
+  validateCreateBlog
 };

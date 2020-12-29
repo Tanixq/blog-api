@@ -21,4 +21,4 @@ module.exports = {
       options: { min: 5 },
     },
   },
-};
+}

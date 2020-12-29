@@ -1,24 +1,21 @@
-const jwt = require("jsonwebtoken");
-const { isEmpty } = require("lodash");
-const { Response } = require("../response-formatter");
-const { STATUS_CODE } = require("../helper/response-code");
-const { AUTHENTICATION } = require("../helper/constant");
-const { User } = require("../../../db/models");
-const { redisClient } = require("./redisClient");
-const { response } = require("express");
+const jwt = require("jsonwebtoken")
+const { isEmpty } = require("lodash")
+const { User } = require("../../../db/models")
+const { redisClient } = require("./redisClient")
+
 // const { decrypt } = require('./crypto')
 
-const authenticationToken = "TEATMEi12jiTT";
+const authenticationToken = "TEATMEi12jiTT"
 
 const validateUser = async (token, email) => {
-  let isExist = await redisClient.getAsync(`${token}`);
+  let isExist = await redisClient.getAsync(`${token}`)
 
   if (isExist) {
-    const isUser = await User.findOne({ email: `${email}` });
-    isExist = !isEmpty(isUser);
+    const isUser = await User.findOne({ email: `${email}` })
+    isExist = !isEmpty(isUser)
   }
-  return isExist;
-};
+  return isExist
+}
 
 const genJWTToken = async (email, expTime) => {
   const token = jwt.sign(
@@ -27,24 +24,24 @@ const genJWTToken = async (email, expTime) => {
     },
     authenticationToken,
     { expiresIn: expTime }
-  );
-  return token;
-};
+  )
+  return token
+}
 
 const validateToken = (token) => {
   try {
-    var decoded = jwt.verify(token, authenticationToken);
+    var decoded = jwt.verify(token, authenticationToken)
     if (decoded.exp <= Date.now() / 1000) {
-      return false;
+      return false
     }
-    return decoded;
+    return decoded
   } catch (err) {
-    return false;
+    return false
   }
-};
+}
 
 module.exports = {
   genJWTToken,
   validateUser,
-  validateToken,
-};
+  validateToken
+}

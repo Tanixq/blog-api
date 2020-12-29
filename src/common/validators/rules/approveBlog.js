@@ -4,4 +4,4 @@ module.exports = {
     errorMessage: 'blog_id is missing',
     exists: true,
   },
-};
+}

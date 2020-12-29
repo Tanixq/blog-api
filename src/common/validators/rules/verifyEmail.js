@@ -1,4 +1,4 @@
-const register = require("./register");
+const register = require("./register")
 
 module.exports = {
   email: register.email,
@@ -7,4 +7,4 @@ module.exports = {
     errorMessage: '"otp" field is missing',
     exists: true,
   },
-};
+}
