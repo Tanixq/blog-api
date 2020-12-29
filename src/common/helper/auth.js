@@ -8,8 +8,7 @@ const { redisClient } = require("./redisClient")
 const authenticationToken = "TEATMEi12jiTT"
 
 const validateUser = async (token, email) => {
-  let isExist = await redisClient.getAsync(`${token}`)
-
+  let isExist = redisClient.GET(`${token}`)
   if (isExist) {
     const isUser = await User.findOne({ email: `${email}` })
     isExist = !isEmpty(isUser)
@@ -25,6 +24,8 @@ const genJWTToken = async (email, expTime) => {
     authenticationToken,
     { expiresIn: expTime }
   )
+  redisClient.SET(token, email)
+  redisClient.expire(token, expTime)
   return token
 }
 

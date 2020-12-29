@@ -1,16 +1,25 @@
-// const { 
-//     REDIS_URL
-// } = require('../../../config/config')
-// const Promise = require('bluebird')
-// const redis = Promise.promisifyAll(require('redis'))
-// const createRedisClient = (redisUrl) => {
-//     const redisInstance = redis.createClient(redisUrl, { detect_buffers: true })
-//     return redisInstance
-// }
+const redis = require("redis")
+const redisClient = redis.createClient()
 
-// const redisClient = createRedisClient(`${REDIS_URL}`)
-// console.log("connected redis successfully");
+redisClient.on("connect", () => {
+  console.log("Client connected to redis...")
+})
 
-// module.exports = {
-//     redisClient
-// }
+redisClient.on("ready", () => {
+  console.log("Client connected to redis and ready to use...")
+})
+
+redisClient.on("error", (err) => {
+  console.log(err.message)
+})
+
+redisClient.on("end", () => {
+  console.log("Client disconnected from redis")
+})
+
+process.on("SIGINT", () => {
+  redisClient.quit()
+})
+module.exports = {
+  redisClient,
+}

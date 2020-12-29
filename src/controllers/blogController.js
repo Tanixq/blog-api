@@ -6,6 +6,7 @@ const { uploadSingleFile } = require("../common/helper/file-upload")
 const { uniqueId } = require("../common/helper/uniqueId")
 const jwt_decode = require("jwt-decode")
 const { isEmpty } = require("lodash")
+const { validateUser } = require("../common/helper/auth")
 
 const blogs = async (req, res) => {
   let response = Response(STATUS_CODE.SUCCESS, "Success", "")
@@ -24,8 +25,14 @@ const userBlogs = async (req, res) => {
   const token = req.headers.authorization
   try {
     const decoded = jwt_decode(token)
-    const blogs = await Blog.find({ author: decoded.email })
-    response.data = blogs
+    const isExist = validateUser(token, decoded.email)
+    if (isExist) {
+      const blogs = await Blog.find({ author: decoded.email })
+      response.data = blogs
+    }else{
+      response = Response(STATUS_CODE.UNAUTHORIZATION, "User not exist or token not valid", "")
+      console.log(error)
+    }
   } catch (error) {
     response = Response(STATUS_CODE.SERVER_ERROR, " ", "")
     console.log(error)
@@ -39,18 +46,24 @@ const createBlog = async (req, res) => {
   const token = req.headers.authorization
   try {
     const decoded = jwt_decode(token)
-    const thumb_image = uniqueId()
-    uploadSingleFile(req.file[0], req.file[0].type, thumb_image)
-    const newBlog = new Blog({
-      title,
-      description,
-      thumb_image: thumb_image,
-      author: decoded.email,
-      approved: false,
-    })
 
-    await newBlog.save()
-    response = Response(STATUS_CODE.SUCCESS, BLOG.SUCCESS, "")
+    const isExist = validateUser(token, decoded.email)
+    if (isExist) {
+      const thumb_image = uniqueId()
+      uploadSingleFile(req.file[0], req.file[0].type, thumb_image)
+      const newBlog = new Blog({
+        title,
+        description,
+        thumb_image: thumb_image,
+        author: decoded.email,
+        approved: false,
+      })
+      await newBlog.save()
+      response = Response(STATUS_CODE.SUCCESS, BLOG.SUCCESS, "")
+    }else{
+      response = Response(STATUS_CODE.UNAUTHORIZATION, "User not exist or token not valid", "")
+      console.log(error)
+    }
   } catch (error) {
     response = Response(
       STATUS_CODE.SERVER_ERROR,
@@ -84,7 +97,16 @@ const reviewBlogs = async (req, res) => {
 const approveBlog = async (req, res) => {
   let response = Response(STATUS_CODE.SUCCESS, "Success", "")
   const { blog_id } = req.body
+  const token = req.headers.authorization
   try {
+    const decoded = jwt_decode(token)
+    const validAdmin = await Admin.findOne({ email: decoded.email })
+    if (isEmpty(validAdmin)) {
+      response = Response(STATUS_CODE.UNAUTHORIZATION, "Unauthorized Admin")
+    } else {
+      const blogs = await Blog.find({ approved: false })
+      response.data = blogs
+    }
     await Blog.findByIdAndUpdate(blog_id, { approved: true })
   } catch (error) {
     response = Response(STATUS_CODE.SERVER_ERROR, " ", "")
@@ -92,7 +114,6 @@ const approveBlog = async (req, res) => {
   }
   res.send(response)
 }
-
 module.exports = {
   blogs,
   userBlogs,
