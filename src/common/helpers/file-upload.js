@@ -5,7 +5,7 @@ const uploadSingleFile = (file, fileType, fileName) => {
     return new Promise((resolve, reject) => {
         var oldPath = file.path
         // eslint-disable-next-line no-undef
-        var newPath = path.join(__dirname, `../../assets/uploads/${fileType}`) + '/' + `${fileName}.${fileType.split('/')[1]}`
+        var newPath = path.join(__dirname, `../../../assets/uploads/${fileType}`) + '/' + `${fileName}.${fileType.split('/')[1]}`
         // var newPath = path.join(__dirname, `../../../../codex/src/assets/uploads/${fileType}`) + '/' + `${fileName}.${file.type.split('/')[1]}`
         var rawData = fs.readFileSync(oldPath)
 

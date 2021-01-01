@@ -15,12 +15,15 @@
     "bcrypt": "^5.0.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
-    "busboy": "^0.3.1",
     "config": "^3.3.3",
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
+    "ejs": "^3.0.1",
     "email-validator": "^2.0.4",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.1",
     "express": "^4.17.1",
-    "express-fileupload": "^1.2.0",
     "express-validator": "^6.8.1",
     "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
@@ -32,6 +35,14 @@
     "nodemailer": "^6.4.17",
     "otp-generator": "^2.0.0",
     "redis": "^3.0.2",
-    "shortid": "^2.2.16"
+    "shortid": "^2.2.16",
+    "winston": "^3.3.3",
+    "winston-daily-rotate-file": "^4.5.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.3.0",
+    "@typescript-eslint/parser": "^4.3.0",
+    "eslint": "^7.10.0",
+    "eslint-config-google": "^0.14.0"
   }
 }

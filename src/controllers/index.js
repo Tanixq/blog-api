@@ -1,17 +1,24 @@
-const { register, login } = require("./userController")
-const { blogs, userBlogs, createBlog, approveBlog, reviewBlogs } = require("./blogController")
-const { verifyEmail, reSendEmail } = require("./emailController")
-const { adminLogin } = require("./adminController")
+const { signup, reSendCode, login, logout } = require("./userController")
+const { createBlog, viewAllPublicBlogs, viewUserBlogs } = require("./blogController")
+const { verifyEmail, resetPassword } = require("./emailController")
+const { adminLogin, adminSignup, adminLogout, pendingBlogs, rejectedBlogs, approvedBlogs, approveBlogById, rejectBlogById } = require("./adminController")
 
 module.exports = {
-  register,
   login,
-  userBlogs,
-  createBlog,
-  blogs,
+  logout,
+  reSendCode,
+  signup,
   verifyEmail,
-  reSendEmail,
+  resetPassword,
+  createBlog,
+  viewAllPublicBlogs,
+  viewUserBlogs,
   adminLogin,
-  reviewBlogs,
-  approveBlog
+  adminSignup,
+  adminLogout,
+  pendingBlogs,
+  rejectedBlogs,
+  approvedBlogs,
+  approveBlogById,
+  rejectBlogById
 }

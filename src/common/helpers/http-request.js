@@ -2,7 +2,6 @@
 var formidable = require('formidable')
 
 const parseBody = (req, res, next) => {
-    console.log("hit parse")
     let fileArray = []
     const form = formidable()
     form.on('file', function (field, file) {

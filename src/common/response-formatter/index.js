@@ -1,4 +1,4 @@
-const { HTTP_STATUS_CODE } = require("../helper/response-code")   
+const { HTTP_STATUS_CODE } = require("../helpers/response-code")   
 
 const Response = (statusCode, msg, data) => {
   return {

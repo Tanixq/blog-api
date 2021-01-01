@@ -21,10 +21,10 @@ module.exports = {
     EXCEPTION: "Oops! Something went wrong. Please contact our support team.",
   },
   SIGNUP: {
-    SUCCESS: "Your account registration is successful",
+    SUCCESS: "Your account registration is successful. Please Verify OTP sent to email",
     EMAIL_EXIST: "This email already exists. Please login.",
     RESEND_CODE: "Verification code successfully sent to your email",
-    RESEND_PWD: "A new password successfully sent to your email",
+    RESET_PWD: "A OTP is successfully sent to your email for resetting Password",
     USER_NOT_EXIST: "This user does not exist",
     EXCEPTION:
       "Our system is busy, kindly go back in couple hours for singing up",
@@ -39,22 +39,29 @@ module.exports = {
     EXCEPTION:
       "It seems you cannot verify your code now, kindly try in a minute",
     ALREADY_VERIFIED: "User already verified",
-    NOT_VERIFIED: "Verify your account by entering otp"
   },
   VERIFY_STATUS: {
     VERIFIED: "verified",
     UNVERIFIED: "unverified",
   },
-
   TYPE_LOG: {
     USER: "USER",
   },
   BLOG: {
-    SUCCESS: "Blog created successfully!",
-    FAIL: "Blog creation unsuccessful!",
+    CREATE_SUCCESSFUL: "Blog created successfully!",
+    CREATE_UNSUCESSFUL: "Blog creation unsuccessful!",
+    BLOG_EXISTED: "Blog with same title already exist try different one!",
+    APPROVED_SUCCESSFUL: "Blog approved successfully",
+    REJECTED_SUCCESSFUL: "Blog rejected successfully",
+    BLOG_NOT_EXISTED: "Blog with this blog_id does not exists!",
+    EXCEPTION: "Oops! Something went wrong. Please contact our support team."
   },
-  TOKEN: {
-    MISSING: "Authorization token is missing",
-    FAILED: "Authorization token Verification is failed",
+  ADMIN: {
+    LOGIN_SUCCESS: "Admin logged in successfully",
+    LOGOUT_SUCCESS: "Admin logged out successfully",
+    INVALID_CREDENTIAL: "Invalid Admin credentials",
+    EXCEPTION: "Something went wrong with admin login contact support team",
+    SIGNUP_SUCCESS: "New Admin added succesfully.",
+    USERNAME_EXISTED: "New Admin username is already existed"
   },
 }

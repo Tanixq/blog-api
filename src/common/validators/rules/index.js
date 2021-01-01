@@ -1,19 +1,21 @@
-const register = require("./register");
-const login = require("./login");
-const blog = require("./blog");
-const verifyEmail = require("./verifyEmail")
-const reSendEmail = require("./resendEmail")
-const approveBlog = require("./approveBlog")
-const validateHeaderToken = require("./validateHeaderToken")
-const validateCreateBlog = require("./createBlog")
+const signup = require('./signup')
+const login = require('./login')
+const verifyEmail = require('./verify-email')
+const reSendCode = require('./resend-code')
+const adminLogin = require('./admin-login')
+const adminSignup = require('./admin-signup')
+const resetPassword = require('./reset-password')
+const approveBlog = require('./approve-blog')
+const tokenInHeader = require('./token-in-header')
 
 module.exports = {
-  register,
+  reSendCode,
+  signup,
   login,
-  blog,
   verifyEmail,
-  reSendEmail,
+  resetPassword,
+  adminLogin,
+  adminSignup,
   approveBlog,
-  validateHeaderToken,
-  validateCreateBlog
-};
+  tokenInHeader
+}

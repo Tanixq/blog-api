@@ -1,10 +1,9 @@
-const express = require("express")
-const router = express.Router()
-const userRoutes = require("./user")
-const blogRoutes = require("./blog")
-const adminRoutes = require("./admin.js")
+const { Router } = require("express")
 
-router.use("/users", userRoutes)
-router.use("/blogs", blogRoutes)
-router.use("/admin", adminRoutes)
-module.exports = router
+const routes = Router()
+
+routes.use('/users', require('./users'))
+routes.use('/blogs', require('./blogs'))
+routes.use('/admin', require('./admin'))
+
+module.exports = routes

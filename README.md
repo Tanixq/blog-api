@@ -2,16 +2,21 @@
 
 ### API End Points
 
-> - **POST request For Registration/SignUp End Point - https://blog-api-tanixq.herokuapp.com/api/users/register**
+> - **POST request For SignUp End Point - https://blog-api-tanixq.herokuapp.com/api/users/signup**
 > - **POST request For Login End Point - https://blog-api-tanixq.herokuapp.com/api/users/login**
-> - **GET request For View Public Blogs - https://blog-api-tanixq.herokuapp.com/api/blogs**
-> - **POST request For Creating New Blog (Login Token Required) End Point - https://blog-api-tanixq.herokuapp.com/api/users/create-blog**
-> - **GET request For View User Blogs (Login Token Required) End Point - https://blog-api-tanixq.herokuapp.com/api/users/blogs**
-> - **POST request For Verify Email End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/verify**
-> - **POST request For Resend Email End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/resend**
+<!-- > - **POST request For Logout End Point - https://blog-api-tanixq.herokuapp.com/api/users/logout** -->
+> - **GET request For View Public Blogs - https://blog-api-tanixq.herokuapp.com/api/blogs/view/**
+> - **POST request For Creating New Blog (Login Token Required) End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/create-new**
+> - **GET request For View User Blogs (Login Token Required) End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/view/user-blogs**
+> - **POST request For Verify User Account End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/verify**
+> - **POST request For Resend Otp End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/resend**
 > - **POST Request For Admin Login on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/login**
-> - **GET Request for Review Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/review-blogs**
-> - **POST Request for Approve Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/approve-blog**
+> - **GET Request for View Pending Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/view/pending-blogs**
+> - **GET Request for View Rejected Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/view/rejected-blogs**
+> - **GET Request for View Approved Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/view/approved-blogs**
+> - **POST Request for Approve Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/blog/approve**
+> - **POST Request for Reject Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/blog/reject**
+> - **POST request For Password Reset End Point - https://blog-api-tanixq.herokuapp.com/api/users/password/reset**
 
 # Usage
 
@@ -25,13 +30,17 @@
 - [Usage For Verify User Account](#for-verify-user-account)
 - [Usage For Resend otp](#for-resend-otp)
 - [Usage For Admin Login](#for-admin-login)
-- [Usage For Review Blogs](#for-review-blogs)
+- [Usage For View Pending Blogs](#for-view-pending-blogs)
+- [Usage For View Rejected Blogs](#for-view-rejected-blogs)
+- [Usage For View Approved Blogs](#for-view-approved-blogs)
 - [Usage For Approve Blog](#for-approve-blog)
+- [Usage For Reject Blog](#for-reject-blog)
+- [Usage For Password Reset](#for-password-reset)
 
 
 
 ## For Sign Up
-Make **POST** Request for sign up on End Point - https://blog-api-tanixq.herokuapp.com/api/users/register
+Make **POST** Request for sign up on End Point - https://blog-api-tanixq.herokuapp.com/api/users/signup
 
 Set Content-Type as application/json
 
@@ -39,22 +48,22 @@ Set Content-Type as application/json
 Content-Type: application/json
 ```
 
-![alt set_content_type](https://github.com/Tanixq/images/blob/main/content-type.gif?raw=true)
-
 Provide Following data in body
 
-| Fields      | Description                 | TYPE      | Required  |
-| ------------- |:-------------:              | -----:    | -----: |
-| name          | Name of the user.           |   String  | Yes |
-| email         | Email of the user.          | String    | Yes |
-| password      | Password of the user.       |   String  | Yes |
+| Fields      | Description                                          | TYPE      | Required  |
+| ------------- |:-------------:                                     | -----:    | -----: |
+| first_name    | First Name of the user                             |   String  | Yes |
+| last_name     | Last Name of the user                              |   String  | Yes |
+| email         | Email of the user.                                 |   String  | Yes |
+| password      | Password of the user. Must be of 8 characters.     |   String  | Yes |
 
 Example :- 
 ```
 {
-    "name": "Test User",
-    "email": "test55@test.com",
-    "password": "123456"
+    "first_name": "Tanishq",
+    "last_name": "Patel"
+    "email": "er.tanixq@gmail.com",
+    "password": "12345678"
 }
 ```
 
@@ -63,10 +72,10 @@ Make **POST** Request for login on End Point - https://blog-api-tanixq.herokuapp
 
 Provide Following data in body
 
-| Fields      | Description                 | TYPE      | Required  |
-| ------------- |:-------------:              | -----:    | -----: |
-| email         | Email of the user.          | String    | Yes |
-| password      | Password of the user.       |   String  | Yes |
+| Fields        | Description           | TYPE      | Required  |
+| ------------- |:-------------:        | -----:    | -----: |
+| email         | Email of the user.    | String    | Yes |
+| password      | Password of the user. | String    | Yes |
 
 
 Example :- 
@@ -76,6 +85,16 @@ Example :-
     "password": "123456"
 }
 ```
+
+Description of Response data
+
+| Fields        | Description                             | TYPE      |
+| ------------- |:-------------:                          | -----:    |
+| id            | id of logged in the user.               | String    |
+| email         | Email of logged in the user.            | String    |
+| userIp        | ip Address of logged in user.           | String    |
+| token         | Authentication token of logged in user  | String    |
+
 
 **Example of API Response:**
 
@@ -86,16 +105,23 @@ On Successful Login
     "message": "Login is successful",
     "data": {
         "user": {
-            "email": "test2@test.com",
-            "lastVisted": 1608982315285
+            "id": "5fef460f026ca8254c5f998d",
+            "email": "er.tanixq@gmail.com",
+            "userIp": "::1"
         },
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwiaWF0IjoxNjA4OTgyMzE1LCJleHAiOjE2MDg5ODQxMTV9.Fuk1uubo-hHTvwymetnN1rqLgMiFeBGVCqgg2LxhrlU"
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZWY0NjBmMDI2Y2E4MjU0YzVmOTk4ZCIsImlhdCI6MTYwOTUxNzc2MCwiZXhwIjoxNjA5NTE5NTYwfQ.w0KURaS-XAJI6PLeS3UaVf_kWkardAuyFPKwMiNpn7k"
     }
 }
 ```
 
+<!-- ## For Logout
+Make **POST** Request for logout on End Point - https://blog-api-tanixq.herokuapp.com/api/users/logout
+
+Provide Authorization Token in header. -->
+
+
 ## For Creating Blog
-Make **POST** Request for Creating Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/users/create-blog
+Make **POST** Request for Creating Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/create-new
 
 Provide Authentication Token in Header
 
@@ -104,56 +130,28 @@ Generate Token by Login and Copy it.
 Provide Following data in body
 
 | Fields         | Description                | TYPE      | Required  |
-| -------------  |:-------------:             | -----:    | -----: |
-| title          | Title of the blog.         |   String  | optional |
-| description    | Description of the blog.   | String    | optional |
-| thumb_image    | image url for blog thumb.  |   file    | optional |
+| -------------  |:-------------:             | -----:    | -----:    |
+| title          | Title of the blog.         |   String  | required  |
+| content        | content of the blog.       | String    | required  |
+| thumb_image    | image for blog thumb.      |   file    | required  |
 
-**Example of response:**
-```
-{
-    "statusCode": 7000,
-    "message": "Blog created successfully!",
-    "data": ""
-}
-```
 
 ## For Viewing User Blog
-Make **Get** Request for View User Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/users/blogs
+Make **Get** Request for View User Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/view/user-blogs
 
 Provide Authentication Token in Header
 
 Generate Token by Login and Copy it.
 
 ## For Viewing Public Blog
-Make **Get** Request for Public Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs
-
-
-**Example of response:**
-```
-{
-    "statusCode": 7000,
-    "message": [
-        {
-            "_id": "5fe6ff536ca27f088c0fb590",
-            "title": "askdfjksd",
-            "description": "hakdjflkad",
-            "thumb_image": "hee",
-            "author": "test@test.com",
-            "approved": true,
-            "__v": 0
-        }
-    ],
-    "data": ""
-}
-```
+Make **Get** Request for Public Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/view/
 
 ## For Verify User Account
 Make **POST** Request for Verify User Account on End Point - https://blog-api-tanixq.herokuapp.com/api/users/email/verify
 
 Provide Following data in body
 
-| Fields      | Description                 | TYPE      | Required  |
+| Fields      | Description                   | TYPE      | Required  |
 | ------------- |:-------------:              | -----:    | -----: |
 | email         | Email of the user.          | String    | Yes |
 | otp           | otp received in email       |   String  | Yes |
@@ -163,7 +161,7 @@ Example :-
 ```
 {  
     "email": "er.tanixq@gmail.com",
-    "otp": "LNoKFJ"
+    "otp": "187849"
 }
 ```
 
@@ -200,42 +198,37 @@ Make **POST** Request for Admin Login on End Point - https://blog-api-tanixq.her
 
 Provide Following data in body
 
-| Fields        | Description                  | TYPE      | Required  |
-| ------------- |:-------------:               | -----:    | -----:    |
-| email         | Email of the admin.          | String    | Yes       |
-| password      | Password of the admin.       | String    | Yes       |
+| Fields          | Description                  | TYPE      | Required  |
+| -------------   |:-------------:               | -----:    | -----:    |
+| admin_username  | Username of the admin.       | String    | Yes       |
+| admin_password  | Password of the admin.       | String    | Yes       |
 
 
-Example :- 
-```
-{
-    "email": "test55@test.com",
-    "password": "123456"
-}
-```
-
-## For Review Blogs
-Make **GET** Request for Review Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/review-blogs
+## For View Pending Blogs
+Make **GET** Request for View Pending Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/view/pending-blogs
 
 Provide Admin Authentication Token in Header.
 
-Example :- 
-```
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpX"
-```
+Generate Token by Admin Login and Copy it.
+
+## For View Rejected Blogs
+Make **GET** Request for View Rejected Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/view/rejected-blogs
+
+Provide Admin Authentication Token in Header.
+
+Generate Token by Admin Login and Copy it.
+
+## For View Approved Blogs
+Make **GET** Request for View Approved Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/view/approved-blogs
+
+Provide Admin Authentication Token in Header.
 
 Generate Token by Admin Login and Copy it.
 
 ## For Approve Blog
-Make **POST** Request for Approve Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/approve-blog
+Make **POST** Request for Approve Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/blog/approve
 
 Provide Admin Authentication Token in Header.
-
-Example :- 
-```
-Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpX"
-```
-
 Generate Token by Admin Login and Copy it.
 
 Provide blog_id in body.
@@ -244,5 +237,41 @@ Example: -
 ```
 {
     "blog_id" : "5fe77e9c6ef2010017df962a"
+}
+```
+
+## For Reject Blog
+Make **POST** Request for Reject Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/blog/reject
+
+Provide Admin Authentication Token in Header.
+Generate Token by Admin Login and Copy it.
+
+Provide blog_id in body.
+
+Example: - 
+```
+{
+    "blog_id" : "5fe77e9c6ef2010017df962a"
+}
+```
+
+
+## For Password Reset
+Make **POST** Request for Password Reset on End Point - https://blog-api-tanixq.herokuapp.com/api/users/password/reset
+
+Provide Following data in body
+
+| Fields      | Description                          | TYPE      | Required  |
+| ------------- |:-------------:                     | -----:    | -----: |
+| email         | Email of the user.                 | String    | Yes |
+| otp           | otp generated from resend route.   | String    | Yes |
+| new_password  | new password of the user.          | String    | Yes |
+
+Example :- 
+```
+{  
+    "email": "er.tanixq@gmail.com",
+    "otp": "122458",
+    "new_password": "12354567890",
 }
 ```

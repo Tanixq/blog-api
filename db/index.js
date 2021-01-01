@@ -4,7 +4,7 @@ const { MONGO_URL } = require('../config/config')
 
 const mongoConnect = () => {
 
-    const db=mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    const db=mongoose.connect(MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
         .then(()=>
         {console.log("Database connected succesfully !");
     })

@@ -1,123 +1,75 @@
-const { Blog, Admin } = require("../../db/models")
-const { STATUS_CODE } = require("../common/helper/response-code.js")
-const { Response } = require("../common/response-formatter")
-const { BLOG, TOKEN } = require("../common/helper/constant")
-const { uploadSingleFile } = require("../common/helper/file-upload")
-const { uniqueId } = require("../common/helper/uniqueId")
-const jwt_decode = require("jwt-decode")
+const { Blog, User } = require("../../db/models")
+const { STATUS_CODE } = require("../common/helpers/response-code.js")
+const { Response, systemError } = require("../common/response-formatter")
+const { BLOG, LOGIN, TYPE_LOG } = require("../common/helpers/constant")
+const { uploadSingleFile } = require("../common/helpers/file-upload")
+const { uniqueId } = require("../common/helpers/uniqueId")
 const { isEmpty } = require("lodash")
-const { validateUser } = require("../common/helper/auth")
+const logger = require('../common/helpers/logger')
 
-const blogs = async (req, res) => {
-  let response = Response(STATUS_CODE.SUCCESS, "Success", "")
+const viewAllPublicBlogs = async (req, res) => {
+  let response = Response(STATUS_CODE.SUCCESS, "", "")
   try {
-    const blogs = await Blog.find({ approved: true })
-    response.message = blogs
-  } catch (error) {
-    response = Response(STATUS_CODE.SERVER_ERROR, " ", "")
-    console.log(error)
+    const blogs = await Blog.find({ blog_status: 'approved' }, ['title', 'content', 'thumb_image_path', 'author', 'createdAt',])
+    response.data = blogs
+  } catch (err) {
+    logger.error(TYPE_LOG.USER, 'User cannot View Public Blogs: ', err.stack)
+    response = systemError(BLOG.EXCEPTION)
+    console.log(err)
   }
   res.send(response)
 }
 
-const userBlogs = async (req, res) => {
-  let response = Response(STATUS_CODE.SUCCESS, "Success", "")
-  const token = req.headers.authorization
-  try {
-    const decoded = jwt_decode(token)
-    const isExist = validateUser(token, decoded.email)
-    if (isExist) {
-      const blogs = await Blog.find({ author: decoded.email })
-      response.data = blogs
-    }else{
-      response = Response(STATUS_CODE.UNAUTHORIZATION, "User not exist or token not valid", "")
-      console.log(error)
+const viewUserBlogs = async (req, res) => {
+    let response = Response(STATUS_CODE.SUCCESS, "", "")
+    const user_id = req.body.user_id
+    try {
+      const userBlogs = await Blog.find({'author.author_id' : `${user_id}`},  ['title', 'content', 'thumb_image_path', 'createdAt','blog_status'])
+      response.data = userBlogs
+    } catch (error) {
+      logger.error(TYPE_LOG.USER, 'User cannot View its Blogs: ', err.stack)
+      response = systemError(LOGIN.EXCEPTION)
+      console.log(err)
     }
-  } catch (error) {
-    response = Response(STATUS_CODE.SERVER_ERROR, " ", "")
-    console.log(error)
-  }
-  res.send(response)
+    res.send(response)
 }
 
 const createBlog = async (req, res) => {
-  let response
-  const { title, description } = req.body
-  const token = req.headers.authorization
+  let response = Response(STATUS_CODE.SUCCESS, BLOG.CREATE_SUCCESSFUL, "")
+  const { title, content } = req.body
   try {
-    const decoded = jwt_decode(token)
-
-    const isExist = validateUser(token, decoded.email)
-    if (isExist) {
-      const thumb_image = uniqueId()
-      uploadSingleFile(req.file[0], req.file[0].type, thumb_image)
+      const isExist = await Blog.find({title: `${title.toLocaleLowerCase()}`})
+      if (isEmpty(isExist)) {
+      const thumb_image_path = uniqueId()
+      uploadSingleFile(req.file[0], req.file[0].type, thumb_image_path)
+      const user = await User.findById(req.body.user_id)
       const newBlog = new Blog({
-        title,
-        description,
-        thumb_image: thumb_image,
-        author: decoded.email,
-        approved: false,
+        title: `${title.toLocaleLowerCase()}`,
+        content: `${content}`,
+        thumb_image_path: `${thumb_image_path}`,
+        author: {
+          author_id: `${user.id}`,
+          author_email: `${user.email}`,
+          author_name: `${user.first_name} ${user.last_name}`
+        },
+        blog_status: 'pending',
       })
-      await newBlog.save()
-      response = Response(STATUS_CODE.SUCCESS, BLOG.SUCCESS, "")
+      await newBlog.save() 
     }else{
-      response = Response(STATUS_CODE.UNAUTHORIZATION, "User not exist or token not valid", "")
-      console.log(error)
+      response.statusCode = STATUS_CODE.EXISTED_VALUE
+      response.message = BLOG.BLOG_EXISTED
     }
-  } catch (error) {
-    response = Response(
-      STATUS_CODE.SERVER_ERROR,
-      `Not Created Successfully`,
-      ""
-    )
-    console.log(error)
+  } catch (err) {
+    logger.error(TYPE_LOG.USER, 'User cannot login: ', err.stack)
+    response = systemError(LOGIN.EXCEPTION)
+    console.log(err)
   }
   res.send(response)
 }
 
-const reviewBlogs = async (req, res) => {
-  let response = Response(STATUS_CODE.SUCCESS, "Success", "")
-  const token = req.headers.authorization
-  try {
-    const decoded = jwt_decode(token)
-    const validAdmin = await Admin.findOne({ email: decoded.email })
-    if (isEmpty(validAdmin)) {
-      response = Response(STATUS_CODE.UNAUTHORIZATION, "Unauthorized Admin")
-    } else {
-      const blogs = await Blog.find({ approved: false })
-      response.data = blogs
-    }
-  } catch (error) {
-    response = Response(STATUS_CODE.SERVER_ERROR, " ", "")
-    console.log(error)
-  }
-  res.send(response)
-}
 
-const approveBlog = async (req, res) => {
-  let response = Response(STATUS_CODE.SUCCESS, "Success", "")
-  const { blog_id } = req.body
-  const token = req.headers.authorization
-  try {
-    const decoded = jwt_decode(token)
-    const validAdmin = await Admin.findOne({ email: decoded.email })
-    if (isEmpty(validAdmin)) {
-      response = Response(STATUS_CODE.UNAUTHORIZATION, "Unauthorized Admin")
-    } else {
-      const blogs = await Blog.find({ approved: false })
-      response.data = blogs
-    }
-    await Blog.findByIdAndUpdate(blog_id, { approved: true })
-  } catch (error) {
-    response = Response(STATUS_CODE.SERVER_ERROR, " ", "")
-    console.log(error)
-  }
-  res.send(response)
-}
 module.exports = {
-  blogs,
-  userBlogs,
+  viewAllPublicBlogs,
+  viewUserBlogs,
   createBlog,
-  reviewBlogs,
-  approveBlog,
 }

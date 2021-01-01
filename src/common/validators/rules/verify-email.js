@@ -1,7 +1,7 @@
-const register = require("./register")
+const signup = require("./signup")
 
 module.exports = {
-  email: register.email,
+  email: signup.email,
   otp: {
     in: ["body"],
     errorMessage: '"otp" field is missing',
