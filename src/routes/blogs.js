@@ -12,7 +12,7 @@ const {
 const { createBlog, viewUserBlogs } = require("../controllers")
 
 routes.get("/view/", viewAllPublicBlogs)
-routes.get('/user-blogs', validateTokenInHeader, isAuthenticate, viewUserBlogs )
+routes.get('/view/user-blogs', validateTokenInHeader, isAuthenticate, viewUserBlogs )
 
 routes.post(
   "/create-new",
