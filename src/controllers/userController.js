@@ -40,8 +40,8 @@ const signup = async (req, res) => {
                 uploadSingleFile(req.file[0], req.file[0].type, profilePicturePath)
             }
             const newUserData = new User({
-                first_name: `${firstName._.lowerCase()}`,
-                last_name: `${lastName._.lowerCase()}`,
+                first_name: `${_.lowerCase(firstName)}`,
+                last_name: `${_.lowerCase(lastName)}`,
                 email: `${email.toLocaleLowerCase()}`,
                 email_verified: false,
                 password: `${password}`,
