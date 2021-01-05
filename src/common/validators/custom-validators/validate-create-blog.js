@@ -23,7 +23,7 @@ const validateCreateBlog = (req, res, next) => {
     }
     if (isEmpty(req.file)) {
         let error = {
-            msg: '"thumb_image" fleid is missing'
+            msg: '"thumbImage" fleid is missing'
         }
         errors.push(error)
     }

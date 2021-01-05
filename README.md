@@ -60,8 +60,8 @@ Provide Following data in body
 
 | Fields      | Description                                          | TYPE      | Required  |
 | -------------  |:-------------:                                     | -----:    | -----: |
-| first_name     | First Name of the user                             |   String  | Yes      |
-| last_name      | Last Name of the user                              |   String  | Yes      |
+| firstName     | First Name of the user                             |   String  | Yes      |
+| lastName      | Last Name of the user                              |   String  | Yes      |
 | email          | Email of the user.                                 |   String  | Yes      |
 | password       | Password of the user. Must be of 8 characters.     |   String  | Yes      |
 | bio            | bio of the user. Max 160 characters.               |   String  | optional |
@@ -134,7 +134,7 @@ Provide Following data in body
 | -------------  |:-------------:             | -----:    | -----:    |
 | title          | Title of the blog.         |   String  | required  |
 | content        | content of the blog.       | String    | required  |
-| thumb_image    | image for blog thumb.      |   file    | required  |
+| thumbImage    | image for blog thumb.      |   file    | required  |
 
 
 ## For Viewing User Blog
@@ -227,8 +227,8 @@ Provide Following data in body
 
 | Fields          | Description                  | TYPE      | Required  |
 | -------------   |:-------------:               | -----:    | -----:    |
-| admin_username  | Username of the admin.       | String    | Yes       |
-| admin_password  | Password of the admin.       | String    | Yes       |
+| adminUsername  | Username of the admin.       | String    | Yes       |
+| adminPassword  | Password of the admin.       | String    | Yes       |
 
 ## For Admin Logout
 Make **POST** Request for logout on End Point - https://blog-api-tanixq.herokuapp.com/api/admin/logout
@@ -262,12 +262,12 @@ Make **POST** Request for Approve Blog on End Point - https://blog-api-tanixq.he
 Provide Admin Authentication Token in Header.
 Generate Token by Admin Login and Copy it.
 
-Provide blog_id in body.
+Provide blogId in body.
 
 Example: - 
 ```
 {
-    "blog_id" : "5fe77e9c6ef2010017df962a"
+    "blogId" : "5fe77e9c6ef2010017df962a"
 }
 ```
 
@@ -277,12 +277,12 @@ Make **POST** Request for Reject Blog on End Point - https://blog-api-tanixq.her
 Provide Admin Authentication Token in Header.
 Generate Token by Admin Login and Copy it.
 
-Provide blog_id in body.
+Provide blogId in body.
 
 Example: - 
 ```
 {
-    "blog_id" : "5fe77e9c6ef2010017df962a"
+    "blogId" : "5fe77e9c6ef2010017df962a"
 }
 ```
 
@@ -296,14 +296,14 @@ Provide Following data in body
 | ------------- |:-------------:                     | -----:    | -----: |
 | email         | Email of the user.                 | String    | Yes |
 | otp           | otp generated from resend route.   | String    | Yes |
-| new_password  | new password of the user.          | String    | Yes |
+| newPassword  | new password of the user.          | String    | Yes |
 
 Example :- 
 ```
 {  
     "email": "er.tanixq@gmail.com",
     "otp": "122458",
-    "new_password": "12354567890",
+    "newPassword": "12354567890",
 }
 ```
 
@@ -323,11 +323,11 @@ Make **DELETE** request For Delete Blog End Point - https://blog-api-tanixq.hero
 Provide Authentication Token in Header.
 Generate Token by Admin Login and Copy it.
 
-Provide blog_id in body.
+Provide blogId in body.
 
 Example: - 
 ```
 {
-    "blog_id" : "5fe77e9c6ef2010017df962a"
+    "blogId" : "5fe77e9c6ef2010017df962a"
 }
 ```

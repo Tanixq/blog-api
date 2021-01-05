@@ -86,10 +86,10 @@ const resetPassword = async (req, res) => {
     const {
         email,
         otp,
-        new_password
+        newPassword
     } = req.body
     logger.debug(TYPE_LOG.USER, 'Starting reset password for user: ', { email: `${email}` })
-    const hash = bcrypt.hashSync(new_password, 5)
+    const hash = bcrypt.hashSync(newPassword, 5)
     const response = await handlePinCode(email, otp,
         {
             email_status: `${VERIFY_STATUS.VERIFIED}`,
