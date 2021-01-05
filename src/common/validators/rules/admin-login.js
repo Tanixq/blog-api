@@ -1,10 +1,10 @@
 const signup = require('./signup')
 
 module.exports = {
-  admin_username: {  
+    adminUsername: {  
         in: ['body'],
         errorMessage: '"username" fleid is missing',
-        exists: true,
-  },
-  admin_password: signup.password,
+        exists: true
+    },
+    adminPassword: signup.password
 }

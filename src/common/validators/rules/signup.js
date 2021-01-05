@@ -1,17 +1,17 @@
 module.exports = {
-    first_name:{
+    firstName: {
         in: ['body'],
-        errorMessage: '"first_name" field is missing',
-        exists: true,
-      },
-    last_name: {
+        errorMessage: '"firstName" field is missing',
+        exists: true
+    },
+    lastName: {
         in: ['body'],
-        errorMessage: '"last_name" field is missing',
+        errorMessage: '"lastName" field is missing',
         exists: true
     },
     email: {
         in: ['body'],
-        errorMessage: '"Email" field is missing',
+        errorMessage: '"email" field is missing',
         exists: true,
         isEmail: {
             errorMessage: 'Invalid email format'
@@ -23,7 +23,14 @@ module.exports = {
         exists: true,
         isLength: {
             errorMessage: 'Password should be at least 8 chars long',
-            options: { min: 8 },
-          },
+            options: { min: 8 }
+        }
+    },
+    bio: {
+        in: ['body'],
+        isLength: {
+            errorMessage: 'bio should only be 160 chars long',
+            options: { max: 160 }
+        }
     }
 }

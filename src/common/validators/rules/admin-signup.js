@@ -2,7 +2,7 @@ module.exports = {
     new_admin_username: {
         in: ['body'],
         errorMessage: '"new_admin_username" fleid is missing',
-        exists: true,
+        exists: true
     },
     new_admin_password: {
         in: ['body'],
@@ -10,7 +10,7 @@ module.exports = {
         exists: true,
         isLength: {
             errorMessage: 'Password should be at least 8 chars long',
-            options: { min: 8 },
-        },
+            options: { min: 8 }
+        }
     }
 }

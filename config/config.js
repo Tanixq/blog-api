@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const { config } = require('dotenv')
 
 config()
@@ -12,5 +13,7 @@ module.exports = {
     GMAIL_ID: process.env.GMAIL_ID,
     GMAIL_PASS: process.env.GMAIL_PASS,
  
-    ENCRYPT_SECRET_KEY: process.env.ENCRYPT_SECRET_KEY
+    ENCRYPT_SECRET_KEY: process.env.ENCRYPT_SECRET_KEY,
+    AUTHENTICATION_TOKEN: process.env.AUTHENTICATION_TOKEN,
+    ADMIN_AUTHENTICATION_TOKEN: process.env.ADMIN_AUTHENTICATION_TOKEN
 }

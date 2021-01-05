@@ -6,16 +6,18 @@ const adminLogin = require('./admin-login')
 const adminSignup = require('./admin-signup')
 const resetPassword = require('./reset-password')
 const approveBlog = require('./approve-blog')
-const tokenInHeader = require('./token-in-header')
+const editUserBio = require('./edit-user-bio')
+const deleteBlog = require('./delete-blog')
 
 module.exports = {
-  reSendCode,
-  signup,
-  login,
-  verifyEmail,
-  resetPassword,
-  adminLogin,
-  adminSignup,
-  approveBlog,
-  tokenInHeader
+    reSendCode,
+    signup,
+    login,
+    verifyEmail,
+    resetPassword,
+    adminLogin,
+    adminSignup,
+    approveBlog,
+    editUserBio,
+    deleteBlog
 }
