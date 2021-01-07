@@ -1,6 +1,7 @@
 const Promise = require('bluebird')
 const redis = Promise.promisifyAll(require('redis'))
-const redisClient = redis.createClient()
+const { REDIS_URL } = require('../../../config/config')
+const redisClient = redis.createClient(REDIS_URL)
 
 redisClient.on('connect', () => {
     console.log('Client connected to redis...')
