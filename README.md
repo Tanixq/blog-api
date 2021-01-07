@@ -146,7 +146,7 @@ Provide Authentication Token in Header
 
 Generate Token by Login and Copy it.
 
-## For Viewing User Blog
+## For View User Profile Blog
 Make **Get** Request for View User Profile on End Point - https://blog-api-tanixq.herokuapp.com/api/users/profile
 
 Provide Authentication Token in Header
