@@ -134,8 +134,10 @@ Provide Following data in body
 | -------------  |:-------------:             | -----:    | -----:    |
 | title          | Title of the blog.         |   String  | required  |
 | content        | content of the blog.       | String    | required  |
-| thumbImage    | image for blog thumb.      |   file    | required  |
+| thumbImage     | image for blog thumb.      |   file    | required  |
+| category       | category for blog.      |   file    | required  |
 
+    categories options: ['fashion', 'food', 'travel', 'music', 'lifestyle', 'fitness', 'diy', 'finance', 'technology', 'other'],
 
 ## For Viewing User Blog
 Make **Get** Request for View User Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/view/user-blogs
