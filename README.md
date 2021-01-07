@@ -135,7 +135,7 @@ Provide Following data in body
 | title          | Title of the blog.         |   String  | required  |
 | content        | content of the blog.       | String    | required  |
 | thumbImage     | image for blog thumb.      |   file    | required  |
-| category       | category for blog.      |   file    | required  |
+| category       | category for blog.      |   String    | required  |
 
     categories options: ['fashion', 'food', 'travel', 'music', 'lifestyle', 'fitness', 'diy', 'finance', 'technology', 'other'],
 
