@@ -1,8 +1,8 @@
-const { Admin, Blog } = require('../../db/models')
+const { Admin, Blog, User } = require('../../db/models')
 const { isEmpty } = require('lodash')
 const { STATUS_CODE } = require('../common/helpers/response-code.js')
 const { Response, systemError } = require('../common/response-formatter')
-const { ADMIN, TYPE_LOG, BLOG, LOGIN } = require('../common/helpers/constant')
+const { ADMIN, TYPE_LOG, BLOG, LOGIN, SIGNUP, PROFILE, LOGOUT } = require('../common/helpers/constant')
 const bcrypt = require('bcrypt')
 const { genAdminJWTToken, removeAdminToken } = require('../common/helpers/admin-auth')
 const logger = require('../common/helpers/logger')
@@ -187,6 +187,84 @@ const rejectBlogById = async (req, res) => {
     res.send(response)
 }
 
+/**
+ * view blog by id for admin API
+ * @param {*} req: in body, pass through blogId
+ * @param {*} res: if blog fetched succesfully, return success message
+ *                 otherwise return error code as API's document
+ */
+
+const adminViewBlogById = async (req, res) => {
+    let response = Response(STATUS_CODE.SUCCESS, BLOG.FETCH_SUCCESS, '')
+    try {
+        const { blogId } = req.body
+        const isBlogExist = await Blog.findById(blogId)
+            .populate('author', ['first_name', 'last_name', 'profile_picture_path', 'email', 'bio', 'createdAt', 'updatedAt'])
+        if (isEmpty(isBlogExist)) {
+            response.statusCode = STATUS_CODE.NOT_FOUND
+            response.message = BLOG.TITLE_NOT_FOUND
+        } else {
+            response.data = isBlogExist
+        } 
+    } catch (err) {
+        logger.error(TYPE_LOG.USER, 'Admin cannot view blog by id: ', err.stack)
+        response = systemError(LOGIN.EXCEPTION)
+        console.log(err)
+    }
+    res.send(response)
+}
+
+/**
+ * view blogs by user for admin API
+ * @param {*} req: in body, pass through userId
+ * @param {*} res: if blogs fetched succesfully, return success message
+ *                 otherwise return error code as API's document
+ */
+const adminViewBlogsByUser = async (req, res) => {
+    let response = Response(STATUS_CODE.SUCCESS, BLOG.FETCH_SUCCESS, '')
+    try {
+        const { userId } = req.body
+        const isUserExist = await Blog.find({ author: `${userId}` },
+            ['title', 'content', 'thumb_image_path', 'createdAt', 'updatedAt', 'category'])
+        if (isEmpty(isUserExist)) {
+            response.statusCode = STATUS_CODE.NOT_FOUND
+            response.message = SIGNUP.USER_NOT_EXIST
+        } else {
+            response.data = isUserExist
+        } 
+    } catch (err) {
+        logger.error(TYPE_LOG.USER, 'Admin cannot view blogs by user: ', err.stack)
+        response = systemError(LOGIN.EXCEPTION)
+        console.log(err)
+    }
+    res.send(response)
+}
+
+/**
+ * view user by userId for admin API
+ * @param {*} req: in body, pass through userId
+ * @param {*} res: if user fetched succesfully, return success message
+ *                 otherwise return error code as API's document
+ */
+
+const adminViewUser = async (req, res) => {
+    let response = Response(STATUS_CODE.SUCCESS, PROFILE.FETCH_SUCCESS, '')
+    try {
+        const { userId } = req.body
+        const isExist = await User.findById(userId, ['first_name', 'last_name', 'email', 'bio', 'profile_picture_path', 'createdAt', 'updatedAt'])
+        if (isEmpty(isExist)) {
+            response.statusCode = STATUS_CODE.NOT_FOUND
+            response.message = SIGNUP.USER_NOT_EXIST
+        } else {
+            response.data = isExist
+        }
+    } catch (err) {
+        logger.error(TYPE_LOG.USER, 'Admin cannot view user profile ', err.stack)
+        response = systemError(LOGOUT.EXCEPTION)
+    }
+    res.send(response)
+}
+
 module.exports = {
     adminLogin,
     adminSignup,
@@ -195,5 +273,8 @@ module.exports = {
     rejectedBlogs,
     approvedBlogs,
     approveBlogById,
-    rejectBlogById
+    rejectBlogById,
+    adminViewBlogById,
+    adminViewBlogsByUser,
+    adminViewUser
 }

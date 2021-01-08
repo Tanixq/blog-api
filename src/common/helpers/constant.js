@@ -64,7 +64,8 @@ module.exports = {
         FETCH_SUCCESS: 'Blog fetched Succesfully',
         EXCEPTION: 'Oops! Something went wrong. Please contact our support team.',
         TITLE_NOT_FOUND: 'Blog with this title is not found',
-        CATEGORY_NOT_EXISTED: 'Blog category does not exist'
+        CATEGORY_NOT_EXISTED: 'Blog category does not exist',
+        BLOG_NOT_FOUND: 'Blog not found'
     },
     ADMIN: {
         LOGIN_SUCCESS: 'Admin logged in successfully',

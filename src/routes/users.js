@@ -32,6 +32,7 @@ routes.post('/email/verify', validateVerifyEmail, verifyEmail)
 routes.post('/email/resend', validateReSendCode, reSendCode)
 routes.post('/password/reset', validateResetPass, resetPassword)
 routes.post('/profile/edit/bio', validateEditUserBio, isAuthenticate, editUserBio)
+
 routes.get('/profile', isAuthenticate, viewUserProfile)
 
 module.exports = routes

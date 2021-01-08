@@ -36,8 +36,9 @@ const signup = async (req, res) => {
         if (_.isEmpty(existedUser)) {
             let profilePicturePath = null
             if (!_.isEmpty(req.file[0])) {
+                let fileLocation = 'profile-pictures'
                 profilePicturePath = uniqueIdProfilePic(firstName)
-                uploadSingleFile(req.file[0], req.file[0].type, profilePicturePath)
+                uploadSingleFile(req.file[0], req.file[0].type, profilePicturePath, fileLocation)
             }
             const newUserData = new User({
                 first_name: `${_.lowerCase(firstName)}`,
@@ -223,9 +224,8 @@ const viewUserProfile = async (req, res) => {
             response.data = isExist
         }
     } catch (err) {
-        logger.error(TYPE_LOG.USER, 'User cannot update bio: ', err.stack)
-        response.statusCode = STATUS_CODE.NOT_FOUND
-        response.message = SIGNUP.USER_NOT_EXIST
+        logger.error(TYPE_LOG.USER, 'User cannot view profile ', err.stack)
+        response = systemError(LOGOUT.EXCEPTION)
     }
     res.send(response)
 }

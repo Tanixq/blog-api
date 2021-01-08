@@ -1,17 +1,17 @@
 const fs = require('fs')
 const path = require('path')
 
-const uploadSingleFile = (file, fileType, fileName) => {
+const uploadSingleFile = (file, fileType, fileName, fileLocation) => {
     return new Promise((resolve, reject) => {
         var oldPath = file.path
         // eslint-disable-next-line no-undef
-        var newPath = path.join(__dirname, `../../../assets/uploads/${fileType}`) + '/' + `${fileName}.${fileType.split('/')[1]}`
+        var newPath = path.join(__dirname, `../../../assets/uploads/${fileType}`) + '/' + `${fileLocation}` + '/' + `${fileName}.${fileType.split('/')[1]}`
         // var newPath = path.join(__dirname, `../../../../codex/src/assets/uploads/${fileType}`) + '/' + `${fileName}.${file.type.split('/')[1]}`
         var rawData = fs.readFileSync(oldPath)
 
         fs.writeFile(newPath, rawData, function (err, data) {
             if (err) reject(err)
-            resolve(`/assets/uploads/${fileType}/${fileName}.${file.type.split('/')[1]}`)
+            resolve(`/assets/uploads/${fileType}/${fileLocation}/${fileName}.${file.type.split('/')[1]}`)
         })
     })
 }

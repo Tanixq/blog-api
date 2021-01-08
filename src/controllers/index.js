@@ -1,7 +1,18 @@
 const { signup, reSendCode, login, logout, editUserBio, viewUserProfile } = require('./userController')
-const { createBlog, viewAllPublicBlogs, viewUserBlogs, deleteUserBlog, viewBlogByTitle, viewBlogsByCategory } = require('./blogController')
+const { createBlog, viewAllPublicBlogs, viewBlogsByUser, viewUserBlogs, deleteUserBlog, viewBlogByTitle, viewBlogsByCategory } = require('./blogController')
 const { verifyEmail, resetPassword } = require('./emailController')
-const { adminLogin, adminSignup, adminLogout, pendingBlogs, rejectedBlogs, approvedBlogs, approveBlogById, rejectBlogById } = require('./adminController')
+const { 
+    adminLogin,
+    adminSignup,
+    adminLogout,
+    pendingBlogs,
+    rejectedBlogs,
+    approvedBlogs,
+    approveBlogById,
+    rejectBlogById,
+    adminViewBlogById,
+    adminViewBlogsByUser,
+    adminViewUser } = require('./adminController')
 
 module.exports = {
     login,
@@ -25,5 +36,9 @@ module.exports = {
     viewUserProfile,
     deleteUserBlog,
     viewBlogByTitle,
-    viewBlogsByCategory
+    viewBlogsByCategory,
+    adminViewBlogById,
+    adminViewBlogsByUser,
+    adminViewUser,
+    viewBlogsByUser
 }
