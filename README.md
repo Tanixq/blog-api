@@ -32,6 +32,10 @@
 ## Blog Routes
 
 > - **POST request For Creating New Blog End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/create-new**
+> - **POST Request for comment on blog on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/comment/new**
+> - **POST Request for Reply on Comment on Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/comment/reply/new**
+> - **POST Request for Clap on Comment on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/comment/clap**
+> - **POST Request for clap on blog on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/clap**
 
 > - **GET request For View User Blogs End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/view/user-blogs**
 > - **GET request For View Public Blogs - https://blog-api-tanixq.herokuapp.com/api/blogs/view/**
@@ -76,7 +80,10 @@
 - [Usage For View Blog by Title](#for-view-blog-by-title)
 - [Usage For Delete Blog](#for-delete-blog)
 - [Usage View Blogs By User](#for-view-blogs-by-user)
-
+- [Usage For Comment on Blog](#for-comment-on-blog)
+- [Usage For Reply on Comment on Blog](#for-reply-on-comment-on-blog)
+- [Usage For Clap on Comment](#for-clap-on-comment)
+- [Usage For Clap on Blog](#for-clap-on-blog)
 
 
 
@@ -375,9 +382,6 @@ Generate Token by Login and Copy it.
 
 ## For Viewing Public Blog
 Make **Get** Request for Public Blogs on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/view/
-
-
-
 
 
 ## For View Blog by Category
