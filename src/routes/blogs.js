@@ -5,7 +5,7 @@ const routes = Router()
 const { parseBody } = require('../common/helpers/http-request')
 
 const {
-    validateCreateBlog, validateDeleteBlog, validateCreateNewComment, validateClapOnComment } = require('../common/validators')
+    validateCreateBlog, validateDeleteBlog, validateCreateNewComment, validateClapOnComment, validateReplyOnComment } = require('../common/validators')
 const { createBlog, 
     viewUserBlogs, 
     deleteUserBlog, 
@@ -33,7 +33,7 @@ routes.post(
     createBlog
 )
 routes.post('/comment/new', isAuthenticate, validateCreateNewComment, createNewComment)
-routes.post('/comment/reply/new', isAuthenticate, replyOnComment)
+routes.post('/comment/reply/new', isAuthenticate, validateReplyOnComment, replyOnComment)
 routes.post('/comment/clap', isAuthenticate, validateClapOnComment, clapOnComment)
 routes.post('/clap', isAuthenticate, validateDeleteBlog, clapOnBlog)
 
