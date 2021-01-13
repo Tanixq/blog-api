@@ -74,5 +74,16 @@ module.exports = {
         EXCEPTION: 'Something went wrong with admin login contact support team',
         SIGNUP_SUCCESS: 'New Admin added succesfully.',
         USERNAME_EXISTED: 'New Admin username is already existed'
+    },
+    COMMENT: {
+        SUCCESS: 'Comment created successfully',
+        DELETE_SUCCESS: 'Comment deleted successfully',
+        NOT_EXIST: 'Comment not exists',
+        INVALID_ID: 'Invalid comment id',
+        REPLY_SUCCESS: 'replied on comment successfully'
+    },
+    CLAP: {
+        SUCCESS: 'Clapped succesfully',
+        REMOVED_SUCCESS: 'Clap removed succesfully'
     }
 }

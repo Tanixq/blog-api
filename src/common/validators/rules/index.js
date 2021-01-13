@@ -8,7 +8,9 @@ const resetPassword = require('./reset-password')
 const approveBlog = require('./approve-blog')
 const editUserBio = require('./edit-user-bio')
 const deleteBlog = require('./delete-blog')
-
+const newComment = require('./new-comment')
+const clapOnComment = require('./clap-on-comment')
+const replyOnComment = require('./reply-on-comment')
 module.exports = {
     reSendCode,
     signup,
@@ -19,5 +21,8 @@ module.exports = {
     adminSignup,
     approveBlog,
     editUserBio,
-    deleteBlog
+    deleteBlog,
+    newComment,
+    clapOnComment,
+    replyOnComment
 }

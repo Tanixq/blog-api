@@ -11,7 +11,9 @@ const blogSchema = new Schema({
         required: true
     },
     blog_status: { type: String, enum: blogStatusEnum, default: 'pending' },
-    category: { type: String, enum: blogCategoryEnum, default: ['other'] }
+    category: { type: String, enum: blogCategoryEnum, default: ['other'] },
+    comments: [{ type: mongoose.Schema.ObjectId, ref: 'Comment' }],
+    claps: [{ user: { type: mongoose.Schema.ObjectId, ref: 'User' } }]
 },
 {
     timestamps: true

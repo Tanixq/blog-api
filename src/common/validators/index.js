@@ -21,6 +21,9 @@ const validateAdminSignup = [checkSchema(rules.adminSignup), validate]
 const validateApproveBlogById = [checkSchema(rules.approveBlog), validate]
 const validateEditUserBio = [checkSchema(rules.editUserBio), validate]
 const validateDeleteBlog = [checkSchema(rules.deleteBlog), validate]
+const validateCreateNewComment = [checkSchema(rules.newComment), validate]
+const validateClapOnComment = [checkSchema(rules.clapOnComment), validate]
+const validateReplyOnComment = [checkSchema(rules.replyOnComment), validate]
 
 module.exports = {
     validateLogin,
@@ -33,5 +36,8 @@ module.exports = {
     validateAdminSignup,
     validateApproveBlogById,
     validateEditUserBio,
-    validateDeleteBlog
+    validateDeleteBlog,
+    validateCreateNewComment,
+    validateClapOnComment,
+    validateReplyOnComment
 }

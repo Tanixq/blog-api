@@ -158,9 +158,9 @@ const approvedBlogs = async (req, res) => {
 
 const approveBlogById = async (req, res) => {
     let response = Response(STATUS_CODE.SUCCESS, BLOG.APPROVED_SUCCESSFUL, '')
-    const { blog_id } = req.body
+    const { blogId } = req.body
     try {
-        await Blog.findByIdAndUpdate(blog_id, { blog_status: 'approved' })
+        await Blog.findByIdAndUpdate(blogId, { blog_status: 'approved' })
     } catch (err) {
         response.statusCode = STATUS_CODE.INVALID_VALUE
         response.message = BLOG.BLOG_NOT_EXISTED

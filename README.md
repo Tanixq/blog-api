@@ -410,3 +410,79 @@ Example: -
 Make **GET** request For view Blogs by User End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/view/user/:userId
 
 replace userId with userId of the user.
+
+## For Comment on Blog
+Make **POST** Request for comment on blog on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/comment/new
+
+Provide authentication token in header.
+
+Provide Following data in body
+
+| Fields         | Description                | TYPE      | Required  |
+| -------------  |:-------------:             | -----:    | -----:    |
+| blogId         | Id of the blog.            |   String  | required  |
+| commentText    | comment Text.              | String    | required  |
+
+Example: - 
+```
+{
+    "blogId" : "5fe77e9c6ef2010017df962a",
+    "commentText" : "This is a comment"
+}
+```
+
+## For Reply on Comment on Blog
+Make **POST** Request for Reply on Comment on Blog on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/comment/reply/new
+
+Provide authentication token in header.
+
+Provide Following data in body
+
+| Fields         | Description                | TYPE      | Required  |
+| -------------  |:-------------:             | -----:    | -----:    |
+| blogId         | Id of the blog.            |   String  | required  |
+| replyText      | Reply Text.                | String    | required  |
+
+Example: - 
+```
+{
+    "blogId" : "5fe77e9c6ef2010017df962a",
+    "replyText" : "This is a comment"
+}
+```
+
+## For Clap on Comment
+Make **POST** Request for Clap on Comment on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/comment/clap
+
+Provide authentication token in header.
+
+Provide Following data in body
+
+| Fields         | Description                | TYPE      | Required  |
+| -------------  |:-------------:             | -----:    | -----:    |
+| commentId      | Id of the comment.            |   String  | required  |
+
+Example: - 
+```
+{
+    "commentId" : "5fe77e9c6ef2010017df962a"
+}
+```
+
+## For Clap on Blog
+Make **POST** Request for clap on blog on End Point - https://blog-api-tanixq.herokuapp.com/api/blogs/clap
+
+Provide authentication token in header.
+
+Provide Following data in body
+
+| Fields         | Description                | TYPE      | Required  |
+| -------------  |:-------------:             | -----:    | -----:    |
+| blogId         | Id of the blog.            |   String  | required  |
+
+Example: - 
+```
+{
+    "blogId" : "5fe77e9c6ef2010017df962a"
+}
+```

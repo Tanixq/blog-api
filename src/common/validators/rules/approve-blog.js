@@ -1,7 +1,7 @@
 module.exports = {
-    blog_id: {
+    blogId: {
         in: ['body'],
-        errorMessage: '"blog_id" fleid is missing',
+        errorMessage: '"blogId" fleid is missing',
         exists: true
     }
 }

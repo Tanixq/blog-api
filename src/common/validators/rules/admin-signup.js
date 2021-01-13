@@ -1,12 +1,12 @@
 module.exports = {
-    new_admin_username: {
+    newAdminUsername: {
         in: ['body'],
-        errorMessage: '"new_admin_username" fleid is missing',
+        errorMessage: '"newAdminUsername" fleid is missing',
         exists: true
     },
-    new_admin_password: {
+    newAdminPassword: {
         in: ['body'],
-        errorMessage: '"new_admin_password" field is missing',
+        errorMessage: '"newAdminPassword" field is missing',
         exists: true,
         isLength: {
             errorMessage: 'Password should be at least 8 chars long',

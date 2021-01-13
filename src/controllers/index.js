@@ -1,5 +1,18 @@
 const { signup, reSendCode, login, logout, editUserBio, viewUserProfile } = require('./userController')
-const { createBlog, viewAllPublicBlogs, viewBlogsByUser, viewUserBlogs, deleteUserBlog, viewBlogByTitle, viewBlogsByCategory } = require('./blogController')
+const { 
+    createBlog, 
+    viewAllPublicBlogs, 
+    viewBlogsByUser, 
+    viewUserBlogs, 
+    deleteUserBlog, 
+    viewBlogByTitle, 
+    viewBlogsByCategory, 
+    createNewComment,
+    clapOnBlog,
+    deleteComment,
+    clapOnComment,
+    replyOnComment } = require('./blogController')
+
 const { verifyEmail, resetPassword } = require('./emailController')
 const { 
     adminLogin,
@@ -40,5 +53,10 @@ module.exports = {
     adminViewBlogById,
     adminViewBlogsByUser,
     adminViewUser,
-    viewBlogsByUser
+    viewBlogsByUser,
+    createNewComment,
+    clapOnBlog,
+    deleteComment,
+    clapOnComment,
+    replyOnComment
 }
