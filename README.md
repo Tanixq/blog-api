@@ -1,5 +1,8 @@
 # blog-api
 
+It is a Rest API for Blog website which has a login, register with OTP verification on mail, create a blog, comment on the blog, like on the blog, and Admin module for blog approval or rejection.
+It is made using express and mongodb.
+
 ### API End Points
 
 ## Admin Routes
